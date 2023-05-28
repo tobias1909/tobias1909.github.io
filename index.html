@@ -5,9 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        function validateImage(fileInput) {
+          var file = fileInput.files[0];
+          
+          if (!file) {
+            alert("No file selected.");
+            return;
+          }
+    
+          var validImageTypes = ["image/jpeg", "image/png", "image/gif"];
+    
+          if (validImageTypes.indexOf(file.type) === -1) {
+            alert("Invalid image format. Please select a JPEG, PNG, or GIF image.");
+            return;
+          }
+          
+          // Additional checks can be added, such as file size or dimensions
+          
+          alert("Image is valid.");
+        }
+      </script>
 </head>
 <body>
     <h1>TEST</h1>
-    <input type="file">
+    <form>
+        <input type="file" onchange="validateImage(this)">
+    </form>
 </body>
 </html>
