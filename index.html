@@ -6,6 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
+        function upload(fileInput) {
+            const axios = require('axios');
+            const fs = require('fs');
+
+            const fullUrl = `https://192.168.0.113/public.php/webdav/test.JPEG`;
+
+            const config = {
+                auth: {
+                username: 'folder',
+                password: ''
+            },
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/zip'
+            }
+            };
+
+            const fileData = fs.readFileSync(filename);
+
+            axios.put(fullUrl, fileData, config)
+                .then(response => {
+            console.log('File uploaded successfully!');
+            // Handle the response
+            })
+            .catch(error => {
+                console.error('Error uploading file:', error);
+            });
+        }
+
+
+
         function validateImage(fileInput) {
           var file = fileInput.files[0];
           
@@ -20,17 +51,16 @@
             alert("Invalid image format. Please select a JPEG, PNG, or GIF image.");
             return;
           }
-          
-          // Additional checks can be added, such as file size or dimensions
-          
-          alert("Image is valid.");
+          upload(fileInput);
         }
       </script>
 </head>
 <body>
-    <h1>TEST</h1>
-    <form>
+    <h1>Bechatroniker Image upload v1</h1>
+    <form action="" >
         <input type="file" onchange="validateImage(this)">
     </form>
+    <p>Styling kumd nu xD</p>
+    <p>vtl a nu iagent a lustige backstorry</p>
 </body>
 </html>
